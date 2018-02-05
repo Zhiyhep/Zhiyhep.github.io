@@ -11,35 +11,29 @@ type: page
 
 ## 关于我
 
-<iframe src="https://githubbadge.appspot.com/gaohaoyang?s=1" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
+### 自我总结
 
-就职于阿里巴巴集团天猫事业部，前端开发工程师，花名川轼。
+粒子物理与原子核物理专业在读研究生。目前的主要工作是利用 [Geant4](http://www.geant4.org/geant4/) 和 [ROOT](https://root.cern.ch) 软件包对粒子探测器进行模拟与数据分析。2018 年会努力学习一些数据获取系统的知识， 希望能够在今年暑假前搭建出一套用于宇宙线缪子成像的装置出来。
 
-主要兴趣集中在前端开发，大前端的概念深入我心。将更多的业务逻辑放在前端中，这很有趣。同时，将自己构想的内容实现出来，这种感觉很愉快。
 
-热爱美好的事物，热爱摇滚乐，组过乐队，卖过唱。
+今年还会学习一些深度学习的基础课程，主要就是想了解一下各种神经网络是怎样实现和工作的。还有就是希望能把曾谨言老师的两卷本量子力学再认真学一遍。
 
-很喜欢崔健的歌词：现实像块石头，精神像个蛋，石头虽然坚硬，可蛋里才是生命。
+### 履历
 
-还有，学习是一个非常愉快的过程。共同加油！
+* 2017 获得核工业部优秀研究生荣誉称号
+* 2016 推免至中国原子能科学研究院
+* 2015 获得清华之友-学业优秀奖学金
+* 2014 获得清华之友-恒大奖学金、轩辕奖学金、中国核动力专项奖学金
+* 2013 获得第三十届全国部分地区大学生物理竞赛物理类二等奖
+* 2012 考入清华大学工程物理系， 获得综合优秀奖学金
 
-* 2016.6.30 入职阿里巴巴天猫事业部
-* 2016.6 毕业于西安交通大学 软件工程硕士
-* 2015.12 获得2014-2015学年二等奖学金
-* 2015.7-2015.8 联想服务，前端开发工程师（实习生）
-* 2013.6 毕业于西安交通大学 理学院
-* 2001 获得西航四校总成绩年级排名第八名
+### 科研论文
 
+* [Nuclear Inst. and Methods in Physics Research,A 885 (2018) 114-118](http://doi.org/10.1016/j.nima.2017.12.003)
 ## 联系我
 
-* GitHub：[Gaohaoyang](https://github.com/Gaohaoyang)
-* email：gaohaoyang126@126.com
-* [Weibo](http://weibo.com/3115521wh)
-* [知乎](https://www.zhihu.com/people/gaohaoyang)
-* [Facebook](https://www.facebook.com/gaohaoyang.water)
-* [Twitter](https://twitter.com/gaohaoyang126)
-* [豆瓣](https://www.douban.com/people/42525035/)
-* [豆瓣音乐人-浩阳的小站](https://site.douban.com/haoyangaiyinyue/)
+* GitHub：[Zhiyhep](https://github.com/Zhiyhep)
+* email：zhiy0523@163.com
 
 ## 关于本站
 
@@ -47,7 +41,7 @@ type: page
 
 ~欢迎使用~
 
-欢迎大家提一些对本站主题的建议，可以直接在下面留言或者新建一个 [Issue](https://github.com/Gaohaoyang/gaohaoyang.github.io/issues)。
+欢迎大家提一些对本站主题的建议，可以新建一个 [Issue](https://github.com/Gaohaoyang/gaohaoyang.github.io/issues)。
 
 ### Update Log
 
