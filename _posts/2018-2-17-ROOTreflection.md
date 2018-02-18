@@ -55,7 +55,7 @@ find_package(ROOT)
 include_directories(${ROOT_INCLUDE_DIR})
 include_directories("$INCLUDE_PATH")
 set(MyClass_LIBRARIES "$LIBRARY_PATH/libMyClass.so")
-target_link_libraries(PROJECt_NAME ${ROOT_LIBRARIES})
-target_link_libraries(PROJECT_NAME ${MyCLass_LIBRARIES})
+target_link_libraries(PROJECT_NAME ${ROOT_LIBRARIES})
+target_link_libraries(PROJECT_NAME ${MyClass_LIBRARIES})
 ```
 
