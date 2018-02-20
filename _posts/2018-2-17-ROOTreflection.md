@@ -41,11 +41,11 @@ LinkDef.hh 文件用于指定希望保存到硬盘上的数据类型， 如果�
 ```
 首先利用 LinkDef.hh 和 MyClass.hh 生成字典（dictionary），然后将 MyClass.cc 和生成的字典文件编译生成动态链接库，最后用 rootcint 生成 rootmap 文件。在 /include 目录下运行 ROOT 命令：
 ```shell
-rootcint -f MyClass_dict.cc -c -p MyClass.hh LinkDef.hh
-`root-config --cxx --cflags` -fPIC -c ../src/MyClass.cc
-`root-config --cxx --cflags` -fPIC -c MyClass_dict.cc
-`root-config --cxx --cflags` -fPIC -shared -o libMyClass.so MyClass_dict.o MyClass.o
-rootcint -f MyClass_dict.cc -rmf libMyClass.rootmap -rml libMyClass.so -c -p MyClass.hh LinkDef.hh 
+$: rootcint -f MyClass_dict.cc -c -p MyClass.hh LinkDef.hh
+$: `root-config --cxx --cflags` -fPIC -c ../src/MyClass.cc
+$: `root-config --cxx --cflags` -fPIC -c MyClass_dict.cc
+$: `root-config --cxx --cflags` -fPIC -shared -o libMyClass.so MyClass_dict.o MyClass.o
+$: rootcint -f MyClass_dict.cc -rmf libMyClass.rootmap -rml libMyClass.so -c -p MyClass.hh LinkDef.hh 
 ``` 
 最后将生成的 .so 文件， .pcm 文件以及 rootmap 文件移动到 /lib 文件夹，接下来就可以通过适当的命令加载动态链接库对 MyClass 进行 I/O 操作了。
 ## 使用动态链接库
