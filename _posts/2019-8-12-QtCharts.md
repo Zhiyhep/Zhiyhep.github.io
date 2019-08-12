@@ -19,19 +19,19 @@ Qt Charts 模块是 Qt 提供的二维数据可视化工具。利用 QChartView 
 
 首先在 QtCreator 中创建一个 Qt Widgets Application 工程，在 .pro 文件中添加如下语句：
 
-{% highlight bash lineno %}
+{% highlight cpp lineno %}
 QT += charts
 {% endhighlight %}
 
 然后在 mainwindow.cpp 文件中包含 QtChart 头文件：
 
-{% highlight bash lineno %}
+{% highlight cpp lineno %}
 #include <QtCharts/QtCharts>
 {% endhighlight %}
 
 接下来在 mainwindow 构造函数中创建折线图对象。
 
-{% highlight bash lineno %}
+{% highlight cpp lineno %}
 // 创建 LineSeries 对象，并添加数据
 QLineSeries *series = new QLineSeries();
 series->append(0, 6);
