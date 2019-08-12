@@ -104,7 +104,7 @@ layout: default
 <script src="{{ "/js/pageContent.js " | prepend: site.baseurl }}" charset="utf-8"></script>
 
 {% if page.syntax %}
-	<link rel="stylesheet" type="text/css" href="{{site.url}/css/syntax.{{ page.syntax}}.css">
+	<link rel="stylesheet" type="text/css" href="{{site.baseurl}/css/syntax.{{ page.syntax}}.css">
 {% else %}
-<link rel="stylesheet" type="text/css" href="{{site.url}}/css/syntax.thankful_eyes.css">
+<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/css/syntax.thankful_eyes.css">
 {% endif %}
