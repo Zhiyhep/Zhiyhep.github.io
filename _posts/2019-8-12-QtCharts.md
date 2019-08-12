@@ -58,4 +58,5 @@ window.setCentralWidget(chartView);
 window.resize(400, 300);
 window.show();
 {% endhighlight %}
+
 ![](/images/QtCharts/linechart.png)
