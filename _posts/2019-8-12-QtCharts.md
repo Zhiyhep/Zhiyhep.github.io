@@ -46,7 +46,7 @@ QChart *chart = new QChart();
 chart->addSeries(series);
 chart->legend()->hide();
 chart->createDefaultAxes();
-chart->setTitle("Simple line chart example);
+chart->setTitle("Simple line chart example");
 
 // 创建 QChartView 对象， 并设置渲染、主题等
 QChartView *chartView = new QChartView(chart);
