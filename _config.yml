@@ -38,8 +38,6 @@ disqus_shortname: zhiy
 baidu_tongji_id: #cf8506e0ef223e57ff6239944e5d46a4
 google_analytics_id: #UA-72449510-4 # google 分析追踪id
 
-highlighter: rouge
-
 # Build settings
 markdown: kramdown
 
