@@ -102,3 +102,9 @@ layout: default
 }());
 </script>
 <script src="{{ "/js/pageContent.js " | prepend: site.baseurl }}" charset="utf-8"></script>
+
+{% if page.syntax %}
+	<link rel="stylesheet" type="text/css" href="{{site.url}/css/syntax.{{ page.syntax}}.css">
+{% else %}
+        <link rel="stylesheet" type="text/css" href="{site.url}/css/syntax.thankful_eyes.css">
+{% endif %}
