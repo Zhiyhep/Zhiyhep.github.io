@@ -84,7 +84,7 @@ w.show();
 
 ## 面积图
 
-```cpp
+{% highlight cpp %}
 // 首先创建两个 QLineSeries 作为上下边界
 QLineSeries *series0 = new QLineSeries(); 
 QLineSeries *series1 = new QLineSeries();
@@ -116,7 +116,7 @@ chartView->setRenderHint(QPainter::Antialiasing);
 w.setCentralWidget(chartView);
 w.resize(400, 300);
 w.show();
-```
+{% endhighlight %}
 
 <center>
 <img width = '60%' src ="/images/QtCharts/areachart.png"/>
