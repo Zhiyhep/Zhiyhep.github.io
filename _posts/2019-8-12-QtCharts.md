@@ -10,7 +10,6 @@ mathjax: true
 ---
 
 * content
-
 {:toc}
 
 Qt Charts 模块是 Qt 提供的二维数据可视化工具。利用 QChartView 类可以方便地添加各种类型的二维数据可视化图表，其中不同类型的图表各自用一个 QAbstractSeries 类表示。
@@ -84,6 +83,7 @@ w.show();
 </center>
 
 ## 面积图
+
 ```cpp
 // 首先创建两个 QLineSeries 作为上下边界
 QLineSeries *series0 = new QLineSeries(); 
