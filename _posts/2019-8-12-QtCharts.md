@@ -172,8 +172,6 @@ painter.drawPath(starPath);
 series2->setBrush(star);
 series2->setPen(QColor(Qt::transparent));
 
-
-
 QChart *chart = new QChart();
 chart->addSeries(series0);
 chart->addSeries(series1);
@@ -192,3 +190,179 @@ w.show();
 <center>
 <img width = '60%' src ="/images/QtCharts/scatterchart.png"/>
 </center>
+
+## 柱状图
+
+### 竖直柱状图
+{% highlight cpp %}
+// 每个 BarSet 代表柱状图中的一组数据
+// 比如要展示 n 个时期的直方图， 则每个 BarSet
+// 代表直方图中的一项，需要添加对应 n 个时期的 n 组数据 
+QBarSet *set0 = new QBarSet("Jane");
+QBarSet *set1 = new QBarSet("John");
+QBarSet *set2 = new QBarSet("Axel");
+QBarSet *set3 = new QBarSet("Mary");
+QBarSet *set4 = new QBarSet("Samantha");
+
+*set0 << 1 << 2 << 3 << 4 << 5 << 6;
+*set1 << 5 << 0 << 0 << 4 << 0 << 7;
+*set2 << 3 << 5 << 8 << 13 << 8 << 5;
+*set3 << 5 << 6 << 7 << 3 << 4 << 5;
+*set4 << 9 << 7 << 5 << 3 << 1 << 2;
+
+QBarSeries *series = new QBarSeries();
+series->append(set0);
+series->append(set1);
+series->append(set2);
+series->append(set3);
+series->append(set4);
+
+QChart *chart = new QChart();
+chart->addSeries(series);
+chart->setTitle("Simple barchart example");
+// AnimationOption 代表图片刷新时的动画
+chart->setAnimationOptions(QChart::SeriesAnimations);
+
+// 为柱状图设置文字横坐标轴和数字竖坐标轴
+QStringList categories;
+categories << "Jan" << "Feb" << "Mar" << "Apr" << "May" << "Jun";
+QBarCategoryAxis *axisX = new QBarCategoryAxis();
+axisX->append(categories);
+chart->addAxis(axisX, Qt::AlignBottom);
+series->attachAxis(axisX);
+
+QValueAxis *axisY = new QValueAxis();
+axisY->setRange(0,15);
+chart->addAxis(axisY, Qt::AlignLeft);
+series->attachAxis(axisY);
+
+// 设置图例
+chart->legend()->setVisible(true);
+chart->legend()->setAlignment(Qt::AlignBottom);
+
+QChartView *chartView = new QChartView(chart);
+chartView->setRenderHint(QPainter::Antialiasing);
+w.setCentralWidget(chartView);
+w.resize(420, 300);
+w.show();
+{% endhighlight %}
+<center>
+<img width = '60%' src ="/images/QtCharts/barchart.png"/>
+</center>
+
+### 水平柱状图 
+
+只需要将 *QBarSeries* 改为 *QHorizontalBarSeries* 即可。
+
+<center>
+<img width = '60%' src ="/images/QtCharts/horizontalbarchart.png"/>
+</center>
+
+### 堆叠柱状图
+
+将 *QBarSeries* 改为 *QStackedBarSeries* 或 *QHorizontalStackedBarSeries* 即可。
+<center>
+<img width = '60%' src ="/images/QtCharts/stackedbarchart.png"/>
+</center>
+
+## 饼状图
+
+{% highlight cpp%}
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    QChartView *chartView = new QChartView();
+    chartView->setRenderHint(QPainter::Antialiasing);
+    QChart *chart = chartView->chart();
+    chart->legend()->setVisible(false);
+    chart->setTitle("Nested donuts demo");
+    chart->setAnimationOptions(QChart::AllAnimations);
+
+    qreal minSize = 0.1;
+    qreal maxSize = 0.9;
+    int donutCount = 5; // 5 个饼图
+
+    for(int i = 0; i < donutCount; i++){
+        QPieSeries *donut = new QPieSeries();
+        int sliceCount = 3 + QRandomGenerator::global()->bounded(5);
+        for(int j = 0; j < sliceCount; j++){
+            qreal value = 100 + QRandomGenerator::global()->bounded(100);
+            QPieSlice *slice = new QPieSlice(QString("%1").arg(value),value);
+            slice->setLabelVisible(true);
+            slice->setLabelColor(Qt::white);
+            slice->setLabelPosition(QPieSlice::LabelInsideTangential);
+            connect(slice, &QPieSlice::hovered, this, &MainWindow::explodeSlice);
+            donut->append(slice);
+            donut->setHoleSize(minSize+i*(maxSize-minSize)/donutCount);
+            donut->setPieSize(minSize + (i + 1) * (maxSize - minSize) / donutCount);
+        }
+        m_donuts.append(donut);
+        chartView->chart()->addSeries(donut);
+    }
+
+    QGridLayout *mainLayout = new QGridLayout;
+    mainLayout->addWidget(chartView,1,1);
+    setLayout(mainLayout);
+
+    updateTimer = new QTimer(this);
+    connect(updateTimer, &QTimer::timeout, this, &MainWindow::updateRotation);
+    updateTimer->start(1250);
+
+    setCentralWidget(chartView);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::updateRotation()
+  {
+      for (int i = 0; i < m_donuts.count(); i++) {
+          QPieSeries *donut = m_donuts.at(i);
+          qreal phaseShift =  -50 + QRandomGenerator::global()->bounded(100);
+          donut->setPieStartAngle(donut->pieStartAngle() + phaseShift);
+          donut->setPieEndAngle(donut->pieEndAngle() + phaseShift);
+      }
+  }
+
+void MainWindow::explodeSlice(bool exploded)
+  {
+      QPieSlice *slice = qobject_cast<QPieSlice *>(sender());
+      if (exploded) {
+          updateTimer->stop();
+          qreal sliceStartAngle = slice->startAngle();
+          qreal sliceEndAngle = slice->startAngle() + slice->angleSpan();
+
+          QPieSeries *donut = slice->series();
+          qreal seriesIndex = m_donuts.indexOf(donut);
+          for (int i = seriesIndex + 1; i < m_donuts.count(); i++) {
+              m_donuts.at(i)->setPieStartAngle(sliceEndAngle);
+              m_donuts.at(i)->setPieEndAngle(360 + sliceStartAngle);
+          }
+      } else {
+          for (int i = 0; i < m_donuts.count(); i++) {
+              m_donuts.at(i)->setPieStartAngle(0);
+              m_donuts.at(i)->setPieEndAngle(360);
+          }
+          updateTimer->start();
+      }
+      slice->setExploded(exploded);
+  }
+{% endhighlight %}
+
+<center>
+<img width = '90%' src ="/images/QtCharts/piechart.gif"/>
+</center>
+
+## 坐标轴类型
+
+* *QValueAxis* 数值坐标轴
+* *QCategoryAxis* 分类坐标轴
+* *QBarCategoryAxis* 柱状图分类坐标轴
+* *QDateTimeAxis* 日期坐标轴
+* *QLogValueAxis* 对数坐标轴 
+
+
